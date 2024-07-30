@@ -60,9 +60,10 @@ public class OpenImage {
     private static JPanel displayImage(BufferedImage i, JFrame f){
         JPanel p = new JPanel();
         float scaleFactor = 0.5f;
+        p.setSize((Main.size.width / 100) * 20, (Main.size.height / 100) * 35);
 
 
-        Image newImg = i.getScaledInstance((int) (i.getWidth() * scaleFactor), (int) (i.getHeight()*scaleFactor), i.SCALE_SMOOTH);
+        Image newImg = i.getScaledInstance(p.getWidth(),p.getHeight(),Image.SCALE_SMOOTH);
         JLabel image = new JLabel(new ImageIcon(newImg));
         p.add(image);
         return p;

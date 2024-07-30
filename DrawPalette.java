@@ -6,7 +6,7 @@ public class DrawPalette extends JPanel {
     ArrayList<String> palette;
 
     DrawPalette(ArrayList<String> colorPalette) {
-        setPreferredSize(new Dimension(800,200));
+        setPreferredSize(new Dimension((Main.size.width / 100) * 30,(Main.size.height / 100) * 20));
         palette = colorPalette;
         this.repaint();
     }

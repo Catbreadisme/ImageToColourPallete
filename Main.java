@@ -11,12 +11,14 @@ public class Main {
     static ColorPalette colorPalette = new ColorPalette();
     public static JFrame f = new JFrame("ImageToColourPalette");
     public static JPanel lastPalette = new JPanel();
+    public static Dimension size = Toolkit.getDefaultToolkit(). getScreenSize();
 
     public static void main(String[] args){
+
         Rectangle buttonSize = new Rectangle(100,50);
         // Frame and window setup
 
-        f.setSize(800,1000);
+        f.setSize((size.width / 100) * 30,(size.height / 100) * 60);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLayout(new FlowLayout());
