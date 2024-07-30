@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.List;
 
 public class OpenImage {
-    public OpenImage(ArrayList<Color> colors, ArrayList<String> colorPalette, JFrame f, JPanel[] lastImage, JTextField numberOfColours){
+    public OpenImage(ArrayList<Color> colors, JTextField numberOfColours, JPanel[] lastImage){
         // System for choosing image files
         JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         j.setAcceptAllFileFilterUsed((false));
@@ -25,16 +25,16 @@ public class OpenImage {
         int r = j.showOpenDialog(null);
         if (r == JFileChooser.APPROVE_OPTION) {
             try {
-                if (lastImage[0] != new JPanel()){
-                    f.remove(lastImage[0]);
-                }
 
+                Main.f.remove(lastImage[0]);
                 // Load image in
                 BufferedImage image = ImageIO.read(j.getSelectedFile());
 
-                JPanel imagePane = displayImage(image, f);
+                JPanel imagePane = displayImage(image, Main.f);
+                Main.f.add(imagePane);
                 lastImage[0] = imagePane;
-                f.add(imagePane);
+
+                Main.f.show();
 
                 // Extract image data to array of colours
                 for (int x = 0; x < image.getWidth(); x++) {
@@ -43,12 +43,12 @@ public class OpenImage {
                         colors.add(c);
                     }
                 }
-                f.show();
+
                 // Generate colour palette from array of colours
-                if (numberOfColours.getText() == "Insert Number"){
-                    generateColorPalette(colors, 5, colorPalette);
+                if (numberOfColours.getText().equals("Insert Number")){
+                    generateColorPalette(colors, 5);
                 }else {
-                    generateColorPalette(colors, Integer.parseInt(numberOfColours.getText()), colorPalette);
+                    generateColorPalette(colors, Integer.parseInt(numberOfColours.getText()));
                 }
 
             } catch (IOException ex) {
@@ -59,10 +59,8 @@ public class OpenImage {
     // Simple image panel creation
     private static JPanel displayImage(BufferedImage i, JFrame f){
         JPanel p = new JPanel();
-        float scaleFactor = 1;
-        if(i.getWidth() > f.getWidth() || i.getHeight() > f.getHeight()){
-            scaleFactor = 0.5f;
-        }
+        float scaleFactor = 0.5f;
+
 
         Image newImg = i.getScaledInstance((int) (i.getWidth() * scaleFactor), (int) (i.getHeight()*scaleFactor), i.SCALE_SMOOTH);
         JLabel image = new JLabel(new ImageIcon(newImg));
@@ -71,7 +69,7 @@ public class OpenImage {
     }
 
     // Generates a colour palette, currently outputs to console only
-    private static void generateColorPalette(ArrayList<Color> colors, int numCol, ArrayList<String> colorPalette){
+    private static void generateColorPalette(ArrayList<Color> colors, int numCol){
         HashMap<Color, Integer> colorOccurrences = new HashMap<Color, Integer>();
 
         for (Color c : colors) {
@@ -100,7 +98,9 @@ public class OpenImage {
             }
         }
         for (Color c : finalPalette) {
-            colorPalette.add("#" + Integer.toHexString(c.getRGB()).substring(2));
+            System.out.println(c.toString());
+            Main.colorPalette.addColor("#" + Integer.toHexString(c.getRGB()).substring(2));
         }
+        Main.colorPalette.drawPalette();
     }
 }

@@ -1,38 +1,26 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.*;
-import java.util.List;
 
 public class Main {
 
     // Public access list of colours to be passed between methods
     public static ArrayList<Color> colors = new ArrayList<Color>();
-    public static ArrayList<String> colorPalette = new ArrayList<String>();
+    static ColorPalette colorPalette = new ColorPalette();
+    public static JFrame f = new JFrame("ImageToColourPalette");
+    public static JPanel lastPalette = new JPanel();
 
     public static void main(String[] args){
-
-        // Accessibility feature, all calculations are based off of screen size to make the program more compatible with different systems
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        int[] screenDims = {(int) size.getWidth(), (int)size.getHeight()};
-
-
-
-
         Rectangle buttonSize = new Rectangle(100,50);
-
         // Frame and window setup
-        JFrame f = new JFrame("ImageToColourPalette");
-        f.setSize(screenDims[0] / 100 * 40,screenDims[1] / 100 * 70);
+
+        f.setSize(800,1000);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLayout(new FlowLayout());
+        f.setLocationRelativeTo(null);
 
         // Button setup for open image button
         JPanel buttons = new JPanel();
@@ -53,28 +41,27 @@ public class Main {
 
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                if (e.getActionCommand()=="Open Image"){
-                    new OpenImage(colors, colorPalette,  f, lastImage, numberOfColours);
-
-                    if (!colorPalette.isEmpty()){
-                        for (String s: colorPalette) {
-                        }
-                    }
-                }
-                if(e.getActionCommand()=="Save"){
-                    new SavePalette(colorPalette);
-                }
+                    colorPalette = new ColorPalette();
+                    new OpenImage(colors, numberOfColours, lastImage);
+            }
+        });
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SavePalette(colorPalette);
             }
         });
 
         // Add all items to panels
         buttons.add(b1);
+        buttons.add(b2);
         buttons.add(numberOfColoursLabel);
         buttons.add(numberOfColours);
 
         f.add(buttons);
 
-        f.show();
+        while (f.isActive()) {
+            f.show();
+        }
     }
 }
