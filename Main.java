@@ -29,7 +29,7 @@ public class Main {
         JButton b1 = new JButton("Open Image");
         b1.setBounds(buttonSize);
 
-        JButton b2 = new JButton("Save");
+        JButton b2 = new JButton("Save Palette");
         b2.setBounds(buttonSize);
 
         // General info and setting labels
