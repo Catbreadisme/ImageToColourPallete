@@ -25,16 +25,15 @@ public class OpenImage {
         int r = j.showOpenDialog(null);
         if (r == JFileChooser.APPROVE_OPTION) {
             try {
-
+                // Remove last image
                 Main.f.remove(lastImage[0]);
                 // Load image in
                 BufferedImage image = ImageIO.read(j.getSelectedFile());
 
+                // Display image
                 JPanel imagePane = displayImage(image, Main.f);
                 Main.f.add(imagePane);
                 lastImage[0] = imagePane;
-
-                Main.f.show();
 
                 // Extract image data to array of colours
                 for (int x = 0; x < image.getWidth(); x++) {
@@ -61,15 +60,13 @@ public class OpenImage {
         JPanel p = new JPanel();
         float scaleFactor = 0.5f;
         p.setSize((Main.size.width / 100) * 20, (Main.size.height / 100) * 35);
-
-
         Image newImg = i.getScaledInstance(p.getWidth(),p.getHeight(),Image.SCALE_SMOOTH);
         JLabel image = new JLabel(new ImageIcon(newImg));
         p.add(image);
         return p;
     }
 
-    // Generates a colour palette, currently outputs to console only
+    // Generates a colour palette adds color palette to global variable and draws palette
     private static void generateColorPalette(ArrayList<Color> colors, int numCol){
         HashMap<Color, Integer> colorOccurrences = new HashMap<Color, Integer>();
 

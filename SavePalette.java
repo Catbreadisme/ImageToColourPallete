@@ -7,13 +7,15 @@ import java.util.ArrayList;
 
 public class SavePalette {
     public SavePalette(ColorPalette colorPalette){
+        // Import palette data
         ArrayList<String> c = colorPalette.getColorPalette();
         ArrayList<String> finalStrings = new ArrayList<>();
+
+        // Setup file Chooser to save file
         JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         int a = jFileChooser.showSaveDialog(null);
 
-        System.out.println("hi");
-
+        // Fill final strings array with color data formatted to gpl file requirements
         if (!c.isEmpty()){
             for (String s: c) {
                 Color col = Color.decode(s);
@@ -21,6 +23,7 @@ public class SavePalette {
             }
         }
 
+        // Write final strings to gpl file
         if (a == JFileChooser.APPROVE_OPTION) {
             try(FileWriter fw = new FileWriter(jFileChooser.getSelectedFile()+".gpl")) {
                 fw.write("GIMP Palette\n");

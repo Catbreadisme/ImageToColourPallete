@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class DrawPalette extends JPanel {
     ArrayList<String> palette;
 
+    // Sets up basic panel info
     DrawPalette(ArrayList<String> colorPalette) {
         setPreferredSize(new Dimension((Main.size.width / 100) * 30,(Main.size.height / 100) * 20));
         palette = colorPalette;
         this.repaint();
     }
 
+    // Paint palette data onto panel
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

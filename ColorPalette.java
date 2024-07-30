@@ -15,6 +15,7 @@ public class ColorPalette {
         return colorPalette;
     }
     public void drawPalette(){
+        // Removes last palette and redraws palette based on data within the color palette arraylist
         Main.f.remove(Main.lastPalette);
         Main.lastPalette.revalidate();
         JPanel p = new DrawPalette(colorPalette);
