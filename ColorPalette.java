@@ -1,6 +1,14 @@
 import javax.swing.*;
 import java.util.ArrayList;
 
+/*
+    By:         Cat Bowden
+    What:       Image To Colour Palette Program
+    Why:        Computer Science Assesment AS91906
+    When:       1/08/2024
+    Version:    12
+*/
+
 public class ColorPalette {
     ArrayList<String> colorPalette;
 
