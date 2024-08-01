@@ -5,6 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*
+    By:         Cat Bowden
+    What:       Image To Colour Palette Program
+    Why:        Computer Science Assesment AS91906
+    When:       1/08/2024
+    Version:    12
+*/
+
 public class SavePalette {
     public SavePalette(ColorPalette colorPalette){
         // Import palette data
