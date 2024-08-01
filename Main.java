@@ -4,6 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+/*
+    By:         Cat Bowden
+    What:       Image To Colour Palette Program
+    Why:        Computer Science Assesment AS91906
+    When:       1/08/2024
+    Version:    12
+*/
+
 public class Main {
 
     // Public list of colours to be passed between methods
@@ -43,8 +51,7 @@ public class Main {
         final JPanel[] lastImage = {new JPanel()};
 
 
-        /* Listens for action from open image button and does colour and image manipulations from there*/
-
+        /* Listens for action from open image button and does colour and image manipulations from there */
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                     colorPalette = new ColorPalette();
