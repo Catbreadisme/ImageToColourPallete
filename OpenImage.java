@@ -8,6 +8,14 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
+/*
+    By:         Cat Bowden
+    What:       Image To Colour Palette Program
+    Why:        Computer Science Assesment AS91906
+    When:       1/08/2024
+    Version:    12
+*/
+
 public class OpenImage {
     public OpenImage(ArrayList<Color> colors, JTextField numberOfColours, JPanel[] lastImage){
         // System for choosing image files
